@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "12.6"
+
+branches:
+  only:
+  - master
+
+before_script:
+  - npm i -g @quasar/cli@0.17.26
+  - quasar build
+
+script: echo "tests not yet set up"
+
+deploy:
+  provider: pages
+  local_dir: dist/spa
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: master
