@@ -93,7 +93,7 @@
             label="You've worried for 10 minutes - stop now"
             class="q-mb-md"
             v-close-popup
-            @click="isInWorryTime = false"
+            @click="finishWorrying"
           />
 
           <q-btn
@@ -101,7 +101,7 @@
             flat
             label="Finish worrying early"
             v-close-popup
-            @click="finishWorryingEarly"
+            @click="finishWorrying"
           />
         </q-card-actions>
       </q-card>
@@ -148,10 +148,10 @@ export default {
 
     startWorryTime() {
       this.isInWorryTime = true;
-      setTimeout(() => (this.hasWorriedForLongEnough = true), 10 * 60 * 1000);
+      setTimeout(() => (this.hasWorriedForLongEnough = true), 10 * 1000);
     },
 
-    finishWorryingEarly() {
+    finishWorrying() {
       this.isInWorryTime = false;
       this.hasWorriedForLongEnough = false;
       clearTimeout(this.worryTimer);
