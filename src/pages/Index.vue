@@ -1,19 +1,28 @@
 <template>
   <q-page class="flex flex-center">
-    <q-btn
-      color="primary"
-      label="Add a worry"
-      size="xl"
-      @click="isAddingWorry = true"
-    />
-
-    <q-btn
-      v-if="worries.length"
-      color="accent"
-      label="Start worry time"
-      size="xl"
-      @click="isInWorryTime = true"
-    />
+    <div class="q-pa-md">
+      <div class="column items-center" style="height: 200px">
+        <div class="col">
+          <q-btn
+            color="accent"
+            label="Add a worry"
+            rounded
+            size="lg"
+            @click="isAddingWorry = true"
+          />
+        </div>
+        <div class="col">
+          <q-btn
+            v-if="worries.length"
+            color="primary"
+            label="Start worry time"
+            rounded
+            size="lg"
+            @click="isInWorryTime = true"
+          />
+        </div>
+      </div>
+    </div>
 
     <q-dialog v-model="isAddingWorry" persistent>
       <q-card style="min-width: 400px">
@@ -47,7 +56,7 @@
     <q-dialog v-model="isInWorryTime" persistent>
       <q-card style="min-width: 400px">
         <q-card-section>
-          <div class="text-h6">Worries</div>
+          <div class="text-h6">Your worries</div>
         </q-card-section>
 
         <q-card-section>
