@@ -18,7 +18,7 @@
             label="Start worry time"
             rounded
             size="lg"
-            @click="isInWorryTime = true"
+            @click="startWorryTime"
           />
         </div>
       </div>
@@ -77,10 +77,19 @@
 
         <q-card-actions align="center" class="text-primary">
           <q-btn
+            v-if="hasWorriedForLongEnough"
+            color="accent"
+            label="You've worried for 10 minutes - stop now"
+            v-close-popup
+            @click="isInWorryTime = false"
+          />
+
+          <q-btn
+            v-else
             flat
             label="Finish worrying early"
             v-close-popup
-            @click="isInWorryTime = false"
+            @click="finishWorryingEarly"
           />
         </q-card-actions>
       </q-card>
@@ -98,8 +107,10 @@ export default {
     return {
       isAddingWorry: false,
       isInWorryTime: false,
+      hasWorriedForLongEnough: false,
       newWorry: "",
-      worries: worries
+      worries: worries,
+      worryTimer: undefined
     };
   },
 
@@ -121,6 +132,17 @@ export default {
       if (!this.worries.length) {
         this.isInWorryTime = false;
       }
+    },
+
+    startWorryTime() {
+      this.isInWorryTime = true;
+      setTimeout(() => (this.hasWorriedForLongEnough = true), 10 * 60 * 1000);
+    },
+
+    finishWorryingEarly() {
+      this.isInWorryTime = false;
+      this.hasWorriedForLongEnough = false;
+      clearTimeout(this.worryTimer);
     }
   }
 };
