@@ -7,8 +7,7 @@ branches:
   - master
 
 before_script:
-  - npm i -g @quasar/cli@0.17.26
-  - quasar build
+  - yarn run build
 
 script: echo "tests not yet set up"
 
