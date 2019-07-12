@@ -93,12 +93,20 @@ export default {
   name: "PageIndex",
 
   data() {
+    let worries = localStorage.getItem("worries");
+    worries = worries ? JSON.parse(worries) : [];
     return {
       isAddingWorry: false,
       isInWorryTime: false,
       newWorry: "",
-      worries: []
+      worries: worries
     };
+  },
+
+  watch: {
+    worries() {
+      localStorage.setItem("worries", JSON.stringify(this.worries));
+    }
   },
 
   methods: {
