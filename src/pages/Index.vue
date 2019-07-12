@@ -1,7 +1,11 @@
 <template>
   <q-page class="flex flex-center">
     <div class="q-pa-md">
-      <div class="column items-center" style="height: 200px">
+      <div class="column items-center" style="height: 400px">
+        <div class="col-4 text-center">
+          <h3>Worry time</h3>
+        </div>
+
         <div class="col">
           <q-btn
             color="accent"
@@ -11,6 +15,7 @@
             @click="isAddingWorry = true"
           />
         </div>
+
         <div class="col">
           <q-btn
             v-if="worries.length"
@@ -20,6 +25,11 @@
             size="lg"
             @click="startWorryTime"
           />
+        </div>
+
+        <div class="col text-center q-pa-md">
+          Add worries throughout the day. When you're ready, start worry time.
+          We'll notify you when you've been worrying for 10 minutes.
         </div>
       </div>
     </div>
@@ -55,8 +65,9 @@
 
     <q-dialog v-model="isInWorryTime" persistent>
       <q-card style="min-width: 400px">
-        <q-card-section>
+        <q-card-section class="text-center">
           <div class="text-h6">Your worries</div>
+          <small>Swipe to move on to the next worry</small>
         </q-card-section>
 
         <q-card-section>
@@ -80,6 +91,7 @@
             v-if="hasWorriedForLongEnough"
             color="accent"
             label="You've worried for 10 minutes - stop now"
+            class="q-mb-md"
             v-close-popup
             @click="isInWorryTime = false"
           />
