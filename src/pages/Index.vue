@@ -148,7 +148,10 @@ export default {
 
     startWorryTime() {
       this.isInWorryTime = true;
-      setTimeout(() => (this.hasWorriedForLongEnough = true), 10 * 60 * 1000);
+      this.worryTimer = setTimeout(
+        () => (this.hasWorriedForLongEnough = true),
+        10 * 60 * 1000
+      );
     },
 
     finishWorrying() {
